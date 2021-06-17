@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Front-matter</title>
+      <link href="/2021/06/17/Front-matter/"/>
+      <url>/2021/06/17/Front-matter/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1>Front-matter</h1><p><strong>Page Front-matter</strong></p><table><thead><tr><th style="text-align:center">写法</th><th style="text-align:center">解释</th></tr></thead><tbody><tr><td style="text-align:center">title</td><td style="text-align:center">【必需】页面标题</td></tr><tr><td style="text-align:center">date</td><td style="text-align:center">【必需】页面创建日期</td></tr><tr><td style="text-align:center">type</td><td style="text-align:center">【必需】标籤、分类和友情链接三个页面需要配置</td></tr><tr><td style="text-align:center">updated</td><td style="text-align:center">【可选】页面更新日期</td></tr><tr><td style="text-align:center">description</td><td style="text-align:center">【可选】页面描述</td></tr><tr><td style="text-align:center">keywords</td><td style="text-align:center">【可选】页面关键字</td></tr><tr><td style="text-align:center">comments</td><td style="text-align:center">【可选】显示页面评论模块(默认 true)</td></tr><tr><td style="text-align:center">top_img</td><td style="text-align:center">【可选】页面顶部图片</td></tr><tr><td style="text-align:center">mathjax</td><td style="text-align:center">【可选】显示mathjax(当设置mathjax的per_page: false时，才需要配置，默认 false)</td></tr><tr><td style="text-align:center">katex</td><td style="text-align:center">【可选】显示katex(当设置katex的per_page: false时，才需要配置，默认 false)</td></tr><tr><td style="text-align:center">aside</td><td style="text-align:center">【可选】显示侧边栏 (默认 true)</td></tr><tr><td style="text-align:center">aplayer</td><td style="text-align:center">【可选】在需要的页面加载aplayer的js和css,请参考文章下面的音乐 配置</td></tr><tr><td style="text-align:center">highlight_shrink</td><td style="text-align:center">【可选】配置代码框是否展开(true/false)(默认为设置中highlight_shrink的配置)</td></tr></tbody></table><p><strong>Post Front-matter</strong></p><table><thead><tr><th>写法</th><th style="text-align:left">解释</th></tr></thead><tbody><tr><td>title</td><td style="text-align:left">【必需】文章标题</td></tr><tr><td>date</td><td style="text-align:left">【必需】文章创建日期</td></tr><tr><td>updated</td><td style="text-align:left">【可选】文章更新日期</td></tr><tr><td>tags</td><td style="text-align:left">【可选】文章标籤</td></tr><tr><td>categories</td><td style="text-align:left">【可选】文章分类</td></tr><tr><td>keywords</td><td style="text-align:left">【可选】文章关键字</td></tr><tr><td>description</td><td style="text-align:left">【可选】文章描述</td></tr><tr><td>top_img</td><td style="text-align:left">【可选】文章顶部图片</td></tr><tr><td>cover</td><td style="text-align:left">【可选】文章缩略图(如果没有设置top_img,文章页顶部将显示缩略图，可设为false/图片地址/留空)</td></tr><tr><td>comments</td><td style="text-align:left">【可选】显示文章评论模块(默认 true)</td></tr><tr><td>toc</td><td style="text-align:left">【可选】显示文章TOC(默认为设置中toc的enable配置)</td></tr><tr><td>toc_number</td><td style="text-align:left">【可选】显示toc_number(默认为设置中toc的number配置)</td></tr><tr><td>copyright</td><td style="text-align:left">【可选】显示文章版权模块(默认为设置中post_copyright的enable配置)</td></tr><tr><td>copyright_author</td><td style="text-align:left">【可选】文章版权模块的文章作者</td></tr><tr><td>copyright_author_href</td><td style="text-align:left">【可选】文章版权模块的文章作者链接</td></tr><tr><td>copyright_url</td><td style="text-align:left">【可选】文章版权模块的文章连结链接</td></tr><tr><td>copyright_info</td><td style="text-align:left">【可选】文章版权模块的版权声明文字</td></tr><tr><td>mathjax</td><td style="text-align:left">【可选】显示mathjax(当设置mathjax的per_page: false时，才需要配置，默认 false)</td></tr><tr><td>katex</td><td style="text-align:left">【可选】显示katex(当设置katex的per_page: false时，才需要配置，默认 false)</td></tr><tr><td>aplayer</td><td style="text-align:left">【可选】在需要的页面加载aplayer的js和css,请参考文章下面的音乐 配置</td></tr><tr><td>highlight_shrink</td><td style="text-align:left">【可选】配置代码框是否展开(true/false)(默认为设置中highlight_shrink的配置)</td></tr><tr><td>aside</td><td style="text-align:left">【可选】显示侧边栏 (默认 true)</td></tr></tbody></table>]]></content>
+      
+      
+      <categories>
+          
+          <category> Hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo,Front-matter </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>计算机网络</title>
       <link href="/2021/06/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
       <url>/2021/06/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</url>
