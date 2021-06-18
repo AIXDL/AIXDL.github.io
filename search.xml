@@ -15,12 +15,16 @@
           
           <category> Hexo </category>
           
+          <category> test </category>
+          
       </categories>
       
       
         <tags>
             
-            <tag> Hexo,Front-matter </tag>
+            <tag> Hexo </tag>
+            
+            <tag> Front-matter </tag>
             
         </tags>
       

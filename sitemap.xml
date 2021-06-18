@@ -95,22 +95,29 @@
 
   <url>
     <loc>http://example.com/</loc>
-    <lastmod>2021-06-17</lastmod>
+    <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
-    <loc>http://example.com/tags/Hexo-Front-matter/</loc>
-    <lastmod>2021-06-17</lastmod>
+    <loc>http://example.com/tags/Hexo/</loc>
+    <lastmod>2021-06-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/Front-matter/</loc>
+    <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</loc>
-    <lastmod>2021-06-17</lastmod>
+    <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -119,14 +126,21 @@
   
   <url>
     <loc>http://example.com/categories/Hexo/</loc>
-    <lastmod>2021-06-17</lastmod>
+    <lastmod>2021-06-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/categories/Hexo/test/</loc>
+    <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</loc>
-    <lastmod>2021-06-17</lastmod>
+    <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
