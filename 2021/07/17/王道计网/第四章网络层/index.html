@@ -1,0 +1,432 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AIX | AIX</title><meta name="author" content="AIX"><meta name="copyright" content="AIX"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="网络层功能概述  主要任务：是将分组从源主机送到目的主机，为分组交换网上的不同主机提供通信服务，网络层的传输单位是数据报  解决网络拥塞的办法是  开环控制    静态手法 闭环控制    动态手法  IP数据报格式 IP数据报如果太长，会将它进行切割，也就成了分组。  ip数据报格式  首部长度：首部长度4B，单位是4B。固定部分是20B，所以首部长度至少为5，最大为15也就是15*4&#x3D;60B">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AIX">
+<meta property="og:url" content="http://example.com/2021/07/17/%E7%8E%8B%E9%81%93%E8%AE%A1%E7%BD%91/%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%BD%91%E7%BB%9C%E5%B1%82/index.html">
+<meta property="og:site_name" content="AIX">
+<meta property="og:description" content="网络层功能概述  主要任务：是将分组从源主机送到目的主机，为分组交换网上的不同主机提供通信服务，网络层的传输单位是数据报  解决网络拥塞的办法是  开环控制    静态手法 闭环控制    动态手法  IP数据报格式 IP数据报如果太长，会将它进行切割，也就成了分组。  ip数据报格式  首部长度：首部长度4B，单位是4B。固定部分是20B，所以首部长度至少为5，最大为15也就是15*4&#x3D;60B">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2021-07-17T00:45:22.568Z">
+<meta property="article:modified_time" content="2021-07-20T08:30:16.705Z">
+<meta property="article:author" content="AIX">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/nasa.jpg"><link rel="canonical" href="http://example.com/2021/07/17/%E7%8E%8B%E9%81%93%E8%AE%A1%E7%BD%91/%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%BD%91%E7%BB%9C%E5%B1%82/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta/><link rel="manifest" href="/img/pwa/manifest.json"/><meta name="msapplication-TileColor" content="#fff"/><link rel="apple-touch-icon" sizes="180x180" href="/img/pwa/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/pwa/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/pwa/16.png"/><link rel="mask-icon" href="/img/pwa/safari-pinned-tab.svg" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?[object Object]";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '[object Object]');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: AIX","link":"链接: ","source":"来源: AIX","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'AIX',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-07-20 16:30:16'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/font_2616641_af3fmivd6sf.css"><style type="text/css">.app-refresh{position:fixed;top:-2.2rem;left:0;right:0;z-index:99999;padding:0 1rem;font-size:15px;height:2.2rem;transition:all .3s ease}.app-refresh-wrap{display:flex;color:#fff;height:100%;align-items:center;justify-content:center}.app-refresh-wrap a{color:#fff;text-decoration:underline;cursor:pointer}</style><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" type="text/css" href="./css/custom.css"><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="AIX" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/image.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">9</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 艺术</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movie/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/Talk/"><i class="fa-fw fas fa-coffee"></i><span> 想法</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">AIX</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 艺术</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movie/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/Talk/"><i class="fa-fw fas fa-coffee"></i><span> 想法</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">无题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-07-17T00:45:22.568Z" title="发表于 2021-07-17 08:45:22">2021-07-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-07-20T08:30:16.705Z" title="更新于 2021-07-20 16:30:16">2021-07-20</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>网络层功能概述</h1>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210717084715.png" alt="image-20210717084715577"></p>
+<h4 id="主要任务：是将分组从源主机送到目的主机，为分组交换网上的不同主机提供通信服务，网络层的传输单位是数据报">主要任务：是将分组从源主机送到目的主机，为分组交换网上的不同主机提供通信服务，网络层的传输单位是数据报</h4>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210717085626.png" alt="image-20210717085626360"></p>
+<p>解决网络拥塞的办法是</p>
+<ol>
+<li>开环控制    静态手法</li>
+<li>闭环控制    动态手法</li>
+</ol>
+<h1>IP数据报格式</h1>
+<p>IP数据报如果太长，会将它进行切割，也就成了分组。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210717090147.png" alt="image-20210717090147190"></p>
+<h2 id="ip数据报格式">ip数据报格式</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210717092646.png" alt="image-20210717092645864"></p>
+<p>首部长度：首部长度4B，单位是4B。固定部分是20B，所以首部长度至少为5，最大为15也就是15*4=60B</p>
+<h5 id="首部长度一定是4B的整数倍，如果长度不够则填充">首部长度一定是4B的整数倍，如果长度不够则填充</h5>
+<p>区分服务：用来标识处理的优先级(很少用)</p>
+<p>总长度：IP数据报的总长度，共16字节，那么最大长度为 2<sup>16</sup>-1=65535B(永远不会达到，因为会分片，成为分组)</p>
+<p>生存时间(TTL):防止分组在路由器中兜圈子，所固定的在网络路由器中转发的存活时间</p>
+<p>协议：<img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210717092247.png" alt="image-20210717092247294"></p>
+<p>首部检验和：每过一个路由器都会检验</p>
+<h1>IP数据报分片</h1>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210717132939.png" alt="image-20210717132938860"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210717133700.png" alt="image-20210717133659795"></p>
+<p>讨论MF=0或者MF=1的前提是DF=0(允许分片)</p>
+<p>片偏移：能够按顺序组合分组，知道分组的先后顺序。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210717144548.png" alt="image-20210717144548491"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210717144723.png" alt="image-20210717144722895"></p>
+<h1>IP地址(可以唯一标识主机和路由器的某个接口)</h1>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210717230316.png" alt="image-20210717230315673"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210717231343.png" alt="image-20210717231343789"></p>
+<p>网桥不能分割广播域</p>
+<p>同一个网络中，网络号要一样，主机号不一样。</p>
+<p>不同的网络号，对应着不同的广播域。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210717233020.png" alt="image-20210717233020279"></p>
+<p>IP地址的分类是为了合理分配资源。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210718080853.png" alt="image-20210718080845147"></p>
+<p>网络号全0，表示本网络内</p>
+<p>路由器隔离广播域，它是不会转发广播分组的</p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210718081015.png" alt="image-20210718081015546"></p>
+<p>用于内网的ip地址，这些地址如果在网络上它是不会被转发的。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210718082501.png" alt="image-20210718082501610"></p>
+<p>主机号全0，全1不能用，网络号全0不能用</p>
+<h1>NAT地址转换(在路由器上安装NAT软件)</h1>
+<h4 id="用途：在局域网中的主机能过访问因特网">用途：在局域网中的主机能过访问因特网</h4>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210718084853.png" alt="image-20210718084853283"></p>
+<p>假设A要向外发送数据，那么A的数据报=源地址(内网地址)+目的地址(接收方NAT路由器地址)+端口(本主机的端口)，当数据报经过NAT路由器的时候，A的数据报会发生变化=源地址(NAT路由器某端口IP地址)+目的地址(接收方NAT路由器地址)+端口(映射后的地址)。</p>
+<p>当送到B所在的NAT路由器之后，数据报=源地址(A的NAT路由器)+目的地址(根据转换表换成B之后的地址)+端口号(经过映射之后的地址)</p>
+<h4 id="NAT地址转换表-内网IP-端口-外网IP-端口-根据端口号确定对应的内网IP和端口号">NAT地址转换表(内网IP:端口=外网IP:端口)根据端口号确定对应的内网IP和端口号</h4>
+<h1>子网划分和子网掩码</h1>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210718090147.png" alt="image-20210718090147398"></p>
+<h2 id="子网划分">子网划分</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210718090501.png" alt="image-20210718090501709"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210718091744.png" alt="image-20210718091744042"></p>
+<p>路由器如何精确定位到局域网中的某台主机呢?</p>
+<p>答:子网掩码</p>
+<p>子网掩码:能够确定要向那个子网中的那个主机转发主机。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210718092205.png" alt="image-20210718092205669"></p>
+<h2 id="子网掩码习题">子网掩码习题</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210718092254.png" alt="image-20210718092254105"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210718093500.png" alt="image-20210718093459975"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210718101734.png" alt="image-20210718101734131"></p>
+<p>直接交付：可以直接转发给子网中的主机</p>
+<p>间接交付:在这个子网中，找不到目的主机，需要转发给下一目的主机</p>
+<p>怎么判断能否直接交付？</p>
+<p>答：将局域网中的目的IP分别和子网掩码进行与操作，结果和子网相同的就是，目的子网。</p>
+<h1>无分类编制(CIDR):普遍使用的编址形式</h1>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210718102050.png" alt="image-20210718102050489"></p>
+<p>主机号全零表示地址块。</p>
+<p>网络前缀有几位，地址掩码全为1</p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210718142649.png" alt="image-20210718142649531"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210718151456.png" alt="image-20210718151456698"></p>
+<p>前16位相同，取17位到21位相同的部分001所以最后的结果是16+3=19的网络前缀，主机号全为0</p>
+<h2 id="构成超网-聚合多个子网">构成超网(聚合多个子网)</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210718143633.png" alt="image-20210718143633656"></p>
+<h1>最长前缀匹配</h1>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210718151118.png" alt="image-20210718151118862"></p>
+<p><a target="_blank" rel="noopener" href="http://xxx.xxx.xxx.xxx/n%E5%B0%86%E7%9B%AE%E7%9A%84%E5%9C%B0%E5%9D%80%E7%9A%84%E5%89%8Dn%E4%B8%BA1%E5%92%8Cyyy.yyy.yyy.yyy.%E7%9B%B8%E4%B8%8E%E3%80%82%E5%BE%97%E5%87%BA%E7%9A%84%E7%BB%93%E8%AE%BA%E5%A6%82%E6%9E%9C%E5%92%8Cxxx.xxx.xxx.xxx%E7%9B%B8%E5%90%8C%E5%B0%B1%E9%80%89%E6%9C%80%E9%95%BF%E7%9B%B8%E5%90%8C%E7%9A%84%E9%82%A3%E4%B8%AA">xxx.xxx.xxx.xxx/n将目的地址的前n为1和yyy.yyy.yyy.yyy.相与。得出的结论如果和xxx.xxx.xxx.xxx相同就选最长相同的那个</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210718152151.png" alt="image-20210718152151484"></p>
+<p>默认路由：当地址和路由表中所有的地址不匹配时就会将其发送到默认路由中，也就是下一个路由</p>
+<h1>ARP协议</h1>
+<p>如果ARP表中没有目的主机的mac地址，则广播ARP的分组请求</p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210719220333.png" alt="image-20210719220333098"></p>
+<p>路由器可以有多个ip地址和mac地址，和端口对应上。</p>
+<p>交换机没有mac地址</p>
+<p>发送数据前，源主机会将子网掩码和目的地址进行与操作，看是否目的主机在同一网段内，如果不是，则数据帧目的mac是默认网关的。同时发送数据给默认网关(路由器)</p>
+<p>源主机如何获取默认网关的mac地址呢?</p>
+<p>答：源主机数据报中的ip地址为默认网关的ip地址。同时广播出去，当默认网关接收到该分组时。就会返回一个响应分组，告诉源主机，默认网关的mac地址</p>
+<p>在数据的发送过程中，源ip地址和目的ip地址是不变的，而每次经过一个结点，都需要改变源mac地址和目的mac地址。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210719222716.png" alt="image-20210719222716457"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210719223206.png" alt="image-20210719223205958"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210719223502.png" alt="image-20210719223502704"></p>
+<h1>DHCP协议</h1>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210719223743.png" alt="image-20210719223743054"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210719224417.png" alt="image-20210719224417319"></p>
+<p>DHCP允许地址重用：DHCP会有一个IP地址池，里面可以存放回收回来的ip地址，ip地址同时有时间限制，过期了就会回收，重新分配一个。但可以续租原来的ip地址</p>
+<p>2.如果一个设备向dhcp服务器广播了报文，可能存在多个服务器进行响应，那么那个dhcp的配置信息先达到就使用哪一个。</p>
+<p>3.主机在确定使用一个dhcp的ip地址后，会进行广播，告诉dhcp服务器我使用你的ip地址，告诉其他dhcp服务器我已经使用某个ip，你们就不用等待了，将ip分配给其他人</p>
+<h1>ICMP协议(为了更有效的转发IP数据报和提高交付成功的机会)</h1>
+<p>ICMP报文=差错报文+询问报文</p>
+<p>分组出错，网络层直接丢弃，然后发送一个ICMP差错报文</p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720084712.png" alt="image-20210720084711910"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720085032.png" alt="image-20210720085031914"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720085252.png" alt="image-20210720085252558"></p>
+<p>ICMP差错报告报文是ip数据报的数据部分，需要封装在ip数据报之中</p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720085631.png" alt="image-20210720085630979"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720085930.png" alt="image-20210720085930110"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720090525.png" alt="image-20210720090525444"></p>
+<p>Traceroute：发送一连串TTL依次增加的数据报。每个数据报达到最终的路由器的时候因为TTL=0，而被路由器丢弃掉。同时返回一个ICMP差错报告报文。最终就可以测算出两主机之间的距离</p>
+<h1>IPV6</h1>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720091122.png" alt="image-20210720091122238"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720091337.png" alt="image-20210720091337450"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720094021.png" alt="image-20210720094021443"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720094520.png" alt="image-20210720094520751"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720094805.png" alt="image-20210720094805275"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720095403.png" alt="image-20210720095403574"></p>
+<p>多播、任播只能做目的地址</p>
+<p>任播：只会发送给离他最近的主机</p>
+<h2 id="兼容ipv4和ipv6">兼容ipv4和ipv6</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720095816.png" alt="image-20210720095816149"></p>
+<p>隧道技术：当发送给ipv4的时候，将整体当成数据部分，在前面添加ipv4首部。当发送给ipv6时就将添加的ipv4去掉前面的首部</p>
+<h1>思维导图</h1>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720100224.png" alt="image-20210720100224300"></p>
+<h1>路由算法及路由协议</h1>
+<p>路由算法：将最佳路径的路由添加到路由表中</p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720102454.png" alt="image-20210720102454439"></p>
+<h2 id=""></h2>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720103217.png" alt="image-20210720103217236"></p>
+<p>拓扑变化不大：不会有大量设备突然加入网路，或者突然撤出网路</p>
+<p>静态路由算法不适合大型网路，毕竟靠人工不现实</p>
+<p>链路费用：路径代价，即这个链路上有几个路由器</p>
+<h2 id="分层次的路由选择协议">分层次的路由选择协议</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720103909.png" alt="image-20210720103909758"></p>
+<p>因特网被分割为多个自治系统AS，AS对外界是透明的</p>
+<p>自制系统内部使用一些协议，外部使用一些协议。</p>
+<h1>RIP协议和距离向量算法</h1>
+<h4 id="RIP适用于比较大型的网络，RIP适用于比较小型的网络">RIP适用于比较大型的网络，RIP适用于比较小型的网络</h4>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720104521.png" alt="image-20210720104521453"></p>
+<p>RIP是分布式的基于距离向量的路由选择协议，是英特网的协议标准，最大优点是简单。</p>
+<p>RIP要求网络中每个路由器都维护自己到附近网络的最佳路径</p>
+<p>跳数：源端口到目的端口经过的路由器个数，经过一个路由器跳数+1。最多1经过5个路由器。16个表示网络不可达</p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720104900.png" alt="image-20210720104900689"></p>
+<p><strong>路由表是如何建立的呢？</strong></p>
+<p>通过与相连的路由器交换路由表信息</p>
+<p>每过30秒交换一次路由信息，超过3分钟，就会判断邻居路由出问题了，把自己路由表中有关邻居路由的信息更新，距离设置为16，表示网络不可达</p>
+<p>路由表一开始的时候，只有直接相连的网络的信息，跳数为1，直接交付。</p>
+<p>路由器交换路由表的信息其实是交换RIP的报文</p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720111137.png" alt="image-20210720110601634"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720111116.png" alt="image-20210720111116010"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720111652.png" alt="image-20210720111652746"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720111850.png" alt="image-20210720111849985"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720112232.png" alt="image-20210720112232263"></p>
+<p>与R1相连的网1出现了故障，但此时收到R2的信息，发现它可以到网络1，所以就一直循环。直到16跳(坏消息传的慢)</p>
+<h1>思维导图</h1>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720112635.png" alt="image-20210720112635631"></p>
+<h1>OSPF协议与链路状态算法</h1>
+<p>OSPF协议：路由器向相邻的路由器都发送信息，而这些路由器又再次将此信息发送给相邻的信息(一传十十传百)</p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720113349.png" alt="image-20210720113349752"></p>
+<p>最后每个路由器都知道到这个网络内所有路由器的最短路径</p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720113913.png" alt="image-20210720113913135"></p>
+<p>把所有路径信息先存入数据库，然后在根据迪杰斯特拉算法得出最短路径</p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720114209.png" alt="image-20210720114209042"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720114331.png" alt="image-20210720114331210"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720142446.png" alt="image-20210720114535056"></p>
+<h2 id="BGP协议">BGP协议</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720142520.png" alt="image-20210720142519861"></p>
+<p>BGP发言人一般就是边界路由器</p>
+<p>自制系统连通图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720142955.png" alt="image-20210720142955319"></p>
+<h4 id="BGP借用TCP传输">BGP借用TCP传输</h4>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720143531.png" alt="image-20210720143531631"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720143847.png" alt="image-20210720143653888"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720143838.png" alt="image-20210720143812033"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720144257.png" alt="image-20210720144257345"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720144523.png" alt="image-20210720144523335"></p>
+<h1>ip组播</h1>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720145057.png" alt="image-20210720145057043"></p>
+<p>组播：只会向有实际需求的主机发送数据</p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720153727.png" alt="image-20210720153726955"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720150149.png" alt="image-20210720150148984"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720155542.png" alt="image-20210720155542035"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720155855.png" alt="image-20210720155855512"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720160223.png" alt="image-20210720160223218"></p>
+<p>主播组的成员是可以动态变化的</p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720162342.png" alt="image-20210720160450287"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720160601.png" alt="image-20210720160601641"></p>
+<h1>移动IP(设备移动，IP不变)</h1>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720161121.png" alt="image-20210720161121171"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720161705.png" alt="image-20210720161705643"></p>
+<h1>路由器</h1>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720162050.png" alt="image-20210720162049833"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720162412.png" alt="image-20210720162412053"></p>
+<h2 id="三层设备-物理层，链路层，网络层">三层设备(物理层，链路层，网络层)</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720162727.png" alt="image-20210720162727298"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/AIXDL/imgcloud/img/20210720162952.png" alt="image-20210720162952529"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">AIX</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/07/17/%E7%8E%8B%E9%81%93%E8%AE%A1%E7%BD%91/%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%BD%91%E7%BB%9C%E5%B1%82/">http://example.com/2021/07/17/%E7%8E%8B%E9%81%93%E8%AE%A1%E7%BD%91/%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%BD%91%E7%BB%9C%E5%B1%82/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">AIX</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src="/img/wechat.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.png" target="_blank"><img class="post-qr-code-img" src="/img/alipay.png" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/07/08/%E7%8E%8B%E9%81%93%E8%AE%A1%E7%BD%91/%E7%AC%AC%E4%B8%89%E7%AB%A0%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/"><img class="prev-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">第三章数据链路层</div></div></a></div><div class="next-post pull-right"><a href="/2021/07/22/%E7%8E%8B%E9%81%93%E8%AE%A1%E7%BD%91/%E7%AC%AC%E4%BA%94%E7%AB%A0%E4%BC%A0%E8%BE%93%E5%B1%82/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info"></div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/image.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">AIX</div><div class="author-info__description">只是一切都将过去</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">9</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/AIXDL"><i class="fab fa-github"></i><span>GitHub主页</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/AIXDL" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://mail.google.com/aixtimeentropy@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">我是谁？我在哪？我在干什么？ps:常德的zero是个美女，hhhhh，你信了傻逼</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">网络层功能概述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E4%BB%BB%E5%8A%A1%EF%BC%9A%E6%98%AF%E5%B0%86%E5%88%86%E7%BB%84%E4%BB%8E%E6%BA%90%E4%B8%BB%E6%9C%BA%E9%80%81%E5%88%B0%E7%9B%AE%E7%9A%84%E4%B8%BB%E6%9C%BA%EF%BC%8C%E4%B8%BA%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2%E7%BD%91%E4%B8%8A%E7%9A%84%E4%B8%8D%E5%90%8C%E4%B8%BB%E6%9C%BA%E6%8F%90%E4%BE%9B%E9%80%9A%E4%BF%A1%E6%9C%8D%E5%8A%A1%EF%BC%8C%E7%BD%91%E7%BB%9C%E5%B1%82%E7%9A%84%E4%BC%A0%E8%BE%93%E5%8D%95%E4%BD%8D%E6%98%AF%E6%95%B0%E6%8D%AE%E6%8A%A5"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">主要任务：是将分组从源主机送到目的主机，为分组交换网上的不同主机提供通信服务，网络层的传输单位是数据报</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">IP数据报格式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ip%E6%95%B0%E6%8D%AE%E6%8A%A5%E6%A0%BC%E5%BC%8F"><span class="toc-number">2.1.</span> <span class="toc-text">ip数据报格式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%A6%96%E9%83%A8%E9%95%BF%E5%BA%A6%E4%B8%80%E5%AE%9A%E6%98%AF4B%E7%9A%84%E6%95%B4%E6%95%B0%E5%80%8D%EF%BC%8C%E5%A6%82%E6%9E%9C%E9%95%BF%E5%BA%A6%E4%B8%8D%E5%A4%9F%E5%88%99%E5%A1%AB%E5%85%85"><span class="toc-number">2.1.0.0.1.</span> <span class="toc-text">首部长度一定是4B的整数倍，如果长度不够则填充</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">IP数据报分片</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">IP地址(可以唯一标识主机和路由器的某个接口)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">5.</span> <span class="toc-text">NAT地址转换(在路由器上安装NAT软件)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E9%80%94%EF%BC%9A%E5%9C%A8%E5%B1%80%E5%9F%9F%E7%BD%91%E4%B8%AD%E7%9A%84%E4%B8%BB%E6%9C%BA%E8%83%BD%E8%BF%87%E8%AE%BF%E9%97%AE%E5%9B%A0%E7%89%B9%E7%BD%91"><span class="toc-number">5.0.0.1.</span> <span class="toc-text">用途：在局域网中的主机能过访问因特网</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NAT%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2%E8%A1%A8-%E5%86%85%E7%BD%91IP-%E7%AB%AF%E5%8F%A3-%E5%A4%96%E7%BD%91IP-%E7%AB%AF%E5%8F%A3-%E6%A0%B9%E6%8D%AE%E7%AB%AF%E5%8F%A3%E5%8F%B7%E7%A1%AE%E5%AE%9A%E5%AF%B9%E5%BA%94%E7%9A%84%E5%86%85%E7%BD%91IP%E5%92%8C%E7%AB%AF%E5%8F%A3%E5%8F%B7"><span class="toc-number">5.0.0.2.</span> <span class="toc-text">NAT地址转换表(内网IP:端口&#x3D;外网IP:端口)根据端口号确定对应的内网IP和端口号</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">6.</span> <span class="toc-text">子网划分和子网掩码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86"><span class="toc-number">6.1.</span> <span class="toc-text">子网划分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81%E4%B9%A0%E9%A2%98"><span class="toc-number">6.2.</span> <span class="toc-text">子网掩码习题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">7.</span> <span class="toc-text">无分类编制(CIDR):普遍使用的编址形式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E6%88%90%E8%B6%85%E7%BD%91-%E8%81%9A%E5%90%88%E5%A4%9A%E4%B8%AA%E5%AD%90%E7%BD%91"><span class="toc-number">7.1.</span> <span class="toc-text">构成超网(聚合多个子网)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">8.</span> <span class="toc-text">最长前缀匹配</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">9.</span> <span class="toc-text">ARP协议</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">10.</span> <span class="toc-text">DHCP协议</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">11.</span> <span class="toc-text">ICMP协议(为了更有效的转发IP数据报和提高交付成功的机会)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">12.</span> <span class="toc-text">IPV6</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%BC%E5%AE%B9ipv4%E5%92%8Cipv6"><span class="toc-number">12.1.</span> <span class="toc-text">兼容ipv4和ipv6</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">13.</span> <span class="toc-text">思维导图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">14.</span> <span class="toc-text">路由算法及路由协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">14.1.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B1%82%E6%AC%A1%E7%9A%84%E8%B7%AF%E7%94%B1%E9%80%89%E6%8B%A9%E5%8D%8F%E8%AE%AE"><span class="toc-number">14.2.</span> <span class="toc-text">分层次的路由选择协议</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">15.</span> <span class="toc-text">RIP协议和距离向量算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RIP%E9%80%82%E7%94%A8%E4%BA%8E%E6%AF%94%E8%BE%83%E5%A4%A7%E5%9E%8B%E7%9A%84%E7%BD%91%E7%BB%9C%EF%BC%8CRIP%E9%80%82%E7%94%A8%E4%BA%8E%E6%AF%94%E8%BE%83%E5%B0%8F%E5%9E%8B%E7%9A%84%E7%BD%91%E7%BB%9C"><span class="toc-number">15.0.0.1.</span> <span class="toc-text">RIP适用于比较大型的网络，RIP适用于比较小型的网络</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">16.</span> <span class="toc-text">思维导图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">17.</span> <span class="toc-text">OSPF协议与链路状态算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#BGP%E5%8D%8F%E8%AE%AE"><span class="toc-number">17.1.</span> <span class="toc-text">BGP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BGP%E5%80%9F%E7%94%A8TCP%E4%BC%A0%E8%BE%93"><span class="toc-number">17.1.0.1.</span> <span class="toc-text">BGP借用TCP传输</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">18.</span> <span class="toc-text">ip组播</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">19.</span> <span class="toc-text">移动IP(设备移动，IP不变)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">20.</span> <span class="toc-text">路由器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E5%B1%82%E8%AE%BE%E5%A4%87-%E7%89%A9%E7%90%86%E5%B1%82%EF%BC%8C%E9%93%BE%E8%B7%AF%E5%B1%82%EF%BC%8C%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="toc-number">20.1.</span> <span class="toc-text">三层设备(物理层，链路层，网络层)</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/07/23/%E7%8E%8B%E9%81%93%E8%AE%A1%E7%BD%91/%E7%AC%AC%E5%85%AD%E7%AB%A0%E5%BA%94%E7%94%A8%E5%B1%82/" title="无题"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2021/07/23/%E7%8E%8B%E9%81%93%E8%AE%A1%E7%BD%91/%E7%AC%AC%E5%85%AD%E7%AB%A0%E5%BA%94%E7%94%A8%E5%B1%82/" title="无题">无题</a><time datetime="2021-07-23T00:58:22.797Z" title="发表于 2021-07-23 08:58:22">2021-07-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/07/22/%E7%8E%8B%E9%81%93%E8%AE%A1%E7%BD%91/%E7%AC%AC%E4%BA%94%E7%AB%A0%E4%BC%A0%E8%BE%93%E5%B1%82/" title="无题"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2021/07/22/%E7%8E%8B%E9%81%93%E8%AE%A1%E7%BD%91/%E7%AC%AC%E4%BA%94%E7%AB%A0%E4%BC%A0%E8%BE%93%E5%B1%82/" title="无题">无题</a><time datetime="2021-07-22T07:38:08.899Z" title="发表于 2021-07-22 15:38:08">2021-07-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/07/17/%E7%8E%8B%E9%81%93%E8%AE%A1%E7%BD%91/%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%BD%91%E7%BB%9C%E5%B1%82/" title="无题"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2021/07/17/%E7%8E%8B%E9%81%93%E8%AE%A1%E7%BD%91/%E7%AC%AC%E5%9B%9B%E7%AB%A0%E7%BD%91%E7%BB%9C%E5%B1%82/" title="无题">无题</a><time datetime="2021-07-17T00:45:22.568Z" title="发表于 2021-07-17 08:45:22">2021-07-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/07/08/%E7%8E%8B%E9%81%93%E8%AE%A1%E7%BD%91/%E7%AC%AC%E4%B8%89%E7%AB%A0%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/" title="第三章数据链路层"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第三章数据链路层"/></a><div class="content"><a class="title" href="/2021/07/08/%E7%8E%8B%E9%81%93%E8%AE%A1%E7%BD%91/%E7%AC%AC%E4%B8%89%E7%AB%A0%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/" title="第三章数据链路层">第三章数据链路层</a><time datetime="2021-07-08T07:30:33.000Z" title="发表于 2021-07-08 15:30:33">2021-07-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/07/06/%E7%8E%8B%E9%81%93%E8%AE%A1%E7%BD%91/%E7%AC%AC%E4%BA%8C%E7%AB%A0%E7%89%A9%E7%90%86%E5%B1%82/" title="第二章物理层"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第二章物理层"/></a><div class="content"><a class="title" href="/2021/07/06/%E7%8E%8B%E9%81%93%E8%AE%A1%E7%BD%91/%E7%AC%AC%E4%BA%8C%E7%AB%A0%E7%89%A9%E7%90%86%E5%B1%82/" title="第二章物理层">第二章物理层</a><time datetime="2021-07-06T01:56:16.000Z" title="发表于 2021-07-06 09:56:16">2021-07-06</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 By AIX</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">永远年轻!永远热泪盈眶!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><div class="app-refresh" id="app-refresh"> <div class="app-refresh-wrap"> <label>✨ 网站已更新最新版本 👉</label> <a href="javascript:void(0)" onclick="location.reload()">点击刷新</a> </div></div><script>function showNotification(){if(GLOBAL_CONFIG.Snackbar){var t="light"===document.documentElement.getAttribute("data-theme")?GLOBAL_CONFIG.Snackbar.bgLight:GLOBAL_CONFIG.Snackbar.bgDark,e=GLOBAL_CONFIG.Snackbar.position;Snackbar.show({text:"已更新最新版本",backgroundColor:t,duration:5e5,pos:e,actionText:"点击刷新",actionTextColor:"#fff",onActionClick:function(t){location.reload()}})}else{var o=`top: 0; background: ${"light"===document.documentElement.getAttribute("data-theme")?"#49b1f5":"#1f1f1f"};`;document.getElementById("app-refresh").style.cssText=o}}"serviceWorker"in navigator&&(navigator.serviceWorker.controller&&navigator.serviceWorker.addEventListener("controllerchange",function(){showNotification()}),window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js")}));</script><script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script><script src="https://myhkw.cn/api/player/162380814690" id="myhk" key="162380814690" m="1"></script><script src="./js/hideCategory.js"><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/Talk/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener toc scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '[object Object]', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
